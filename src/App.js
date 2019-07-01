@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { without as _without } from 'lodash';
+import CheckBox from './CheckBox';
 
 class App extends Component {
   constructor(context) {
@@ -33,15 +34,19 @@ class App extends Component {
         <div className="form-control">
           <label>Item 0</label>
           <input type="checkbox" onClick={() => this.toggleMe(0)} checked={this.state.checked.includes(0)} />
-        </div>
+         <CheckBox />
+         </div>
         <div className="form-control">
           <label>Item 1</label>
           <input type="checkbox" onClick={() => this.toggleMe(1)} checked={this.state.checked.includes(1)} />
-        </div>
-        <div className="form-control">
+         <CheckBox />
+         </div>
+      <div className="form-control">
           <label>Item 2</label>
           <input type="checkbox" onClick={() => this.toggleMe(2)} checked={this.state.checked.includes(2)} />
-        </div>
+          <CheckBox />
+          </div>
+
         <div className="form-control" style={{ marginTop: 20 }}>
           <button onClick={() => alert(JSON.stringify(this.state.checked))}>
             Enviar!

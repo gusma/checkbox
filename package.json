@@ -5,6 +5,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "mustard-ui": "^0.0.8",
+    "npm": "^6.9.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
