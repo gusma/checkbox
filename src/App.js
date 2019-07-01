@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { without as _without } from 'lodash';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(context) {
+    super(context);
+
+    this.state = {
+      checkboxs: [
+        0, 1, 2,
+      ],
+      checked: [1],
+    }
+  }
+
+  toggleMe(itemId) {
+    let { checked } = this.state;
+
+    if (checked.includes(itemId)) {
+      checked = _without(checked, itemId);
+    } else {
+      checked.push(itemId);
+    }
+
+    this.setState({
+      checked,
+    });
+  }
+
+  buildForm() {
+    return (
+      <form>
+        <div className="form-control">
+          <label>Item 0</label>
+          <input type="checkbox" onClick={() => this.toggleMe(0)} checked={this.state.checked.includes(0)} />
+        </div>
+        <div className="form-control">
+          <label>Item 1</label>
+          <input type="checkbox" onClick={() => this.toggleMe(1)} checked={this.state.checked.includes(1)} />
+        </div>
+        <div className="form-control">
+          <label>Item 2</label>
+          <input type="checkbox" onClick={() => this.toggleMe(2)} checked={this.state.checked.includes(2)} />
+        </div>
+        <div className="form-control" style={{ marginTop: 20 }}>
+          <button onClick={() => alert(JSON.stringify(this.state.checked))}>
+            Enviar!
+          </button>
+        </div>
+      </form>
+    );
+  }
+
+  render() {
+    return (
+      <main>
+        <div className="container">
+          <h2>{`Estás por mandar ${this.state.checked.length} opciones`}</h2>
+          {this.buildForm()}
+        </div>
+      </main>
+    );
+  }
 }
 
 export default App;
